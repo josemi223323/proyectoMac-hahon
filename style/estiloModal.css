@@ -1,0 +1,13 @@
+#panel-info {
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 30vh;
+  width: 50vh;
+  top: 25vh;
+  left: 80vh;
+  transition: all .5s;
+  text-align: center;
+}
