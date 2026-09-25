@@ -1,6 +1,6 @@
-# [Nombre del proyecto]
+# demo mac-hahon
 
-Demo privada, solo-frontend y para un jugador, del videojuego de gran estrategia que estoy desarrollando como Trabajo de Fin de Grado (DAW).
+Demo privada, solo-frontend y para un jugador, del videojuego de gran estrategia que estoy desarrollando 
 
 Ambientado en la guerra franco-prusiana (1870-71), permite jugar como Francia o Prusia sobre un mapa interactivo en SVG. Este prototipo sirve para validar la viabilidad del concepto antes de abordar el TFG completo.
 
@@ -37,4 +37,3 @@ Josemi
 
 ## Licencia
 
-Uso académico / TFG. Pendiente de definir licencia final.
