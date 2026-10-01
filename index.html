@@ -1,19 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <style src="estiloMapa.css"></style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de Europa simplificado · Canvas 2D</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #0f1a24; font-family: system-ui, sans-serif; color: #e8e2d0; }
+  #wrap { position: relative; width: 100%; height: 100%; }
+  canvas { display: block; width: 100%; height: 100%; cursor: grab; touch-action: none; }
+  canvas.dragging { cursor: grabbing; }
+  #info { position: absolute; left: 12px; top: 12px; padding: 8px 12px; background: rgba(0,0,0,.6);
+          border-radius: 6px; font-size: 14px; pointer-events: none; line-height: 1.4; }
+  #info small { opacity: .7; }
+</style>
+<script type="module" src="./script/canva.js" defer> </script>
+<script src="./script/interfazPais.js" defer></script>
 </head>
-<script src="script/cargarMapa.js" defer></script>
-<script src="script/panel.js"></script>
-<link rel="stylesheet" href="style/estiloModal.css">
 <body>
- <div id="contenedor-mapa" class="contenedor-mapa"></div>
-
-<div id="panel-info" style="display: none;">
-  <button id="cerrar-panel">✖</button>
-  <h2 id="panel-nombre"></h2>
-  <img id="panel-bandera" src="" alt="">
-  <p id="panel-descripcion"></p>
+<div id="wrap">
+  <canvas id="mapa"></canvas>
+  <div id="info"><b>Europa</b><br><small>Pasa el ratón por una provincia · rueda: zoom · arrastrar: mover</small></div>
 </div>
+  <dialog id="modal">
+  <h2 id="modal-titulo"></h2>
+  <p id="modal-texto"></p>
+  <button id="modal-cerrar">Cerrar</button>
+</dialog>
+
 </body>
 </html>
