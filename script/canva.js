@@ -1,3 +1,4 @@
+/* importa el json de paises para poder cargarlo en cargarMapa */
 import { crearInterfaz } from "./interfazPais.js";
 window.addEventListener("load", function () {
   fetch("jsons/paises.json")
@@ -10,7 +11,7 @@ window.addEventListener("load", function () {
     })
     .catch((error) => console.error("Error en la petición:", error));
 });
-// ---------- Proyección cónica conforme de Lambert ----------
+// ---------- Proyección cónica conforme de Lambert, calculos complicados no tocar ----------
 function cargarMapa(DATOS) {
   const RAD = Math.PI / 180;
   const LON0 = 15 * RAD,
