@@ -1,13 +1,19 @@
-/* importa el json de paises para poder cargarlo en cargarMapa */
 import { crearInterfaz } from "./interfazPais.js";
+/* importa el json de paises para poder cargarlo en cargarMapa */
+
 window.addEventListener("load", function () {
-  fetch("jsons/paises.json")
-    .then((response) => {
-      if (!response.ok) throw new Error("Error en la respuesta de la red");
-      return response.json();
-    })
-    .then((datos) => {
-      cargarMapa(datos);
+  Promise.all([
+    fetch("jsons/paises.json").then((r) => {
+      if (!r.ok) throw new Error("Error cargando paises.json");
+      return r.json();
+    }),
+    fetch("jsons/colorPaises.json").then((r) => {
+      if (!r.ok) throw new Error("Error cargando colores.json");
+      return r.json();
+    }),
+  ])
+    .then(([Paises, colores]) => {
+      cargarMapa(Paises, colores);
     })
     .catch((error) => console.error("Error en la petición:", error));
 });
@@ -28,9 +34,9 @@ function cargarMapa(DATOS) {
   const rho = (lat) => F / Math.pow(Math.tan(Math.PI / 4 + lat / 2), N);
   const rho0 = rho(LAT0);
   function proyectar(lon, lat) {
-    const t = N * (lon * RAD - LON0),
-      r = rho(lat * RAD);
-    return [r * Math.sin(t), -(rho0 - r * Math.cos(t))];
+    const x = lon * RAD;
+    const y = Math.log(Math.tan(Math.PI / 4 + (lat * RAD) / 2));
+    return [x, -y];
   }
 
   // ---------- Preparación: un Path2D por provincia + caja para acelerar el clic ----------
