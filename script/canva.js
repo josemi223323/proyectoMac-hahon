@@ -18,7 +18,7 @@ window.addEventListener("load", function () {
     .catch((error) => console.error("Error en la petición:", error));
 });
 // ---------- Proyección cónica conforme de Lambert, calculos complicados no tocar ----------
-function cargarMapa(DATOS) {
+function cargarMapa(Paises,Color) {
   const RAD = Math.PI / 180;
   const LON0 = 15 * RAD,
     LAT1 = 35 * RAD,
@@ -38,18 +38,14 @@ function cargarMapa(DATOS) {
     const y = Math.log(Math.tan(Math.PI / 4 + (lat * RAD) / 2));
     return [x, -y];
   }
-
-  // ---------- Preparación: un Path2D por provincia + caja para acelerar el clic ----------
-  function colorPais(nombre) {
-    document
+   document
       .getElementById("modal-cerrar")
       .addEventListener("click", () => modal.close());
-    // un tono estable por país
-    let h = 0;
-    for (const ch of nombre) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
-    return { h: h % 360, s: 28 + ((h >> 8) % 18), l: 38 + ((h >> 16) % 14) };
+  // ---------- Preparación: un Path2D por provincia + caja para acelerar el clic ----------
+  function colorPais(nombre) {
+    return Color[nombre] || { h: 0, s: 0, l: 50 };
   }
-  const provincias = DATOS.map((d) => {
+  const provincias = Paises.map((d) => {
     const path = new Path2D();
     let x0 = 1e9,
       y0 = 1e9,
