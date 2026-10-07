@@ -1,24 +1,9 @@
 import { crearInterfaz } from "./interfazPais.js";
 /* importa el json de paises para poder cargarlo en cargarMapa */
 
-window.addEventListener("load", function () {
-  Promise.all([
-    fetch("jsons/paises.json").then((r) => {
-      if (!r.ok) throw new Error("Error cargando paises.json");
-      return r.json();
-    }),
-    fetch("jsons/colorPaises.json").then((r) => {
-      if (!r.ok) throw new Error("Error cargando colores.json");
-      return r.json();
-    }),
-  ])
-    .then(([Paises, colores]) => {
-      cargarMapa(Paises, colores);
-    })
-    .catch((error) => console.error("Error en la petición:", error));
-});
+
 // ---------- Proyección cónica conforme de Lambert, calculos complicados no tocar ----------
-function cargarMapa(Paises,Color) {
+export function cargarMapa(Paises,Color) {
   const RAD = Math.PI / 180;
   const LON0 = 15 * RAD,
     LAT1 = 35 * RAD,
